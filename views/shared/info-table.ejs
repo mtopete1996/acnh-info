@@ -1,0 +1,26 @@
+<% if (data.headers && data.body) { %>
+  <table class="bordered">
+    <thead>
+      <% data.headers.map(header => { %>
+        <th><%= header %></th>
+      <% }) %>
+    </thead>
+    <tbody>
+      <% data.body.map(row => { %>
+        <% if (row) { %>
+          <tr>
+            <% Object.values(row).map((cell, idx) => { %>
+              <% if (idx == 0) { %>
+                <td>
+                  <img src="<%= cell %>" height="30" width="30" />
+                </td>
+              <% } else { %>
+                <td class="text-center"><%= cell %> </td>
+                <% } %>
+            <% }) %>
+          </tr>
+        <% } %>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>

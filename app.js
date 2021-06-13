@@ -6,7 +6,7 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var fishesRouter = require('./routes/fishes');
 
 var app = express();
 
@@ -19,15 +19,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
+  src: path.join(__dirname, 'public/stylesheets/scss'),
+  dest: path.join(__dirname, 'public/stylesheets/css'),
+  indentedSyntax: false,
   sourceMap: true
 }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/fishes', fishesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

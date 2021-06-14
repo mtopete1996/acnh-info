@@ -1,6 +1,7 @@
 const axiosService = require('./axiosService');
 const shared = require('../config.json');
 const moment = require('moment');
+const stringTools = require('./stringTools');
 
 const getAllFish = async () => {
   const { apiUrl } = shared
@@ -20,10 +21,13 @@ const cleanFish = fish => {
   const inCurrentTime = fish.availability['time-array'].includes(moment().hour())
 
   if (inCurrentDate && inCurrentTime) {
+    const { location } = fish.availability
+
     return {
-      name: fish['file-name'],
+      name: stringTools.titleize(fish['file-name']),
       shadow: fish['shadow'],
       icon: fish['icon_uri'],
+      location
     }
   }
 }

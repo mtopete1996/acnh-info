@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+var cors = require('cors')
+const fishService = require('../services/fishService')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', cors(), function(req, res, next) {
+  fishService.getAllFish().then(datx => {
+    res.render('index', { data: datx });
+  })
+  .catch(err => {
+    console.log(err)
+  })
 });
 
 module.exports = router;

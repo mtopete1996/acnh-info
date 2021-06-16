@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Animal Crossing: New Horizons Info</title>
+    <link rel='stylesheet' href='/stylesheets/css/base.css' />
+    <link rel='stylesheet' href='/stylesheets/css/text.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Animal Crossing: New Horizons Info</h1>
+    <h3>Fishes available now</h3>
+    <table>
+      <thead>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Shadow Size</th>
+        <th>Location</th>
+      </thead>
+      <tbody>
+        <% data.map(dat => { %>
+          <% if (dat) { %>
+            <tr>
+              <td  class="text-center">
+                <img src="<%= dat.icon %>" height="30"  alt="img-<%= dat.name %>"/>
+              </td>
+              <td class="text-center"><%= dat.name %></td>
+              <td class="text-center"><%= dat.shadow %></td>
+              <td class="text-center"><%= dat.location %></td>
+            </tr>
+          <% } %>
+        <% }) %>
+      </tbody>
+    </table>
+
   </body>
 </html>

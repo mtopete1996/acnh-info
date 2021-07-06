@@ -20,7 +20,7 @@ const sanitizeFish = fish => {
     return {
       icon: fish['icon_uri'],
       location,
-      name: fish['name-USen'],
+      name: fish['name']['name-USen'],
       shadow: fish['shadow'],
     }
   }
